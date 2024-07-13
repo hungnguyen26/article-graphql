@@ -1,12 +1,24 @@
 import express, { Express, Request, Response } from "express";
+import dotenv from "dotenv";
+import * as database from "./config/database";
+import Article from "./model/article.model";
+
+dotenv.config();
+
+database.connect();
 
 const app: Express = express();
-const port: number = 3000;
+const port: number | String = process.env.PORT || 3000;
+
 
 // REST APi
-app.get("/artical", (req: Request, res: Response) => {
+app.get("/article", async (req: Request, res: Response) => {
+    const articals = await Article.find({
+        deleted:false
+    })
+
     res.json({
-        artical: []
+        artical: articals
     })
 });
 
