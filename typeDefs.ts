@@ -29,9 +29,17 @@ export const typeDefs = gql`
         description: String
     }
 
+    input categoryInput {
+        title: String,
+        avatar: String,
+    }
+
     type Mutation {             
         createArticle(article: articleInput): Article
         deleteArticle(id: ID): String,
         updateArticle(id: ID, article: articleInput): Article
+
+        createCategory(category: categoryInput): Category
+
     }
 `;

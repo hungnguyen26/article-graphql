@@ -79,5 +79,15 @@ export const resolvers = {
 
             return record;
         },
+
+
+        createCategory: async (_, args)=>{
+            const  { category } = args;
+
+            const record = new Category(category);
+            await record.save();
+
+            return record;
+        },
     }
   };
