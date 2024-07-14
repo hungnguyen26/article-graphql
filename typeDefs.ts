@@ -40,6 +40,7 @@ export const typeDefs = gql`
         updateArticle(id: ID, article: articleInput): Article
 
         createCategory(category: categoryInput): Category
+        deleteCategory(id: ID): String,
         updateCategory(id: ID, category: categoryInput): Category
 
 

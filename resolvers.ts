@@ -102,5 +102,18 @@ export const resolvers = {
 
             return record;
         },
+        deleteCategory: async (_,args)=>{
+            const { id } = args;
+
+            await Category.updateOne({
+                _id:id
+            },{
+                deleted:true,
+                deletedAt: new Date()
+            })
+
+            return "Đã xóa";
+        },
+        
     }
   };
