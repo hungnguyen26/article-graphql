@@ -8,9 +8,19 @@ export const typeDefs = gql`
         description: String
     }
 
-    type Query {
+    type Query {              
         hello: String,
         getListArticle: [Article],
         getAricle(id: ID): Article
+    }
+    
+    input articleInput {
+        title: String,
+        avatar: String,
+        description: String
+    }
+
+    type Mutation {             
+        createArticle(article: articleInput): Article
     }
 `;
