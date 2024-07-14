@@ -40,6 +40,8 @@ export const typeDefs = gql`
         updateArticle(id: ID, article: articleInput): Article
 
         createCategory(category: categoryInput): Category
+        updateCategory(id: ID, category: categoryInput): Category
+
 
     }
 `;

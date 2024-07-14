@@ -89,5 +89,18 @@ export const resolvers = {
 
             return record;
         },
+        updateCategory: async (_,args)=>{
+            const { id , category } = args;
+
+            await Category.updateOne({
+                _id:id
+            },category)
+
+            const record = await Category.findOne({
+                _id:id
+            })
+
+            return record;
+        },
     }
   };
