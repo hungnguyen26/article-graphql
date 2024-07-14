@@ -1,4 +1,5 @@
 import Article from "./model/article.model";
+import Category from "./model/categories.model";
 
 export const resolvers = {
     Query: {
@@ -21,6 +22,24 @@ export const resolvers = {
         });
 
         return article;
+      },
+
+      getListCategory: async ()=>{
+        const category = await Category.find({
+            deleted: false,
+        });
+
+        return category;
+      },
+      getCategory: async (_, args)=>{
+        const { id } = args;
+
+        const category = await Category.findOne({
+            _id: id,
+            deleted: false,
+        });
+
+        return category;
       },
     },
 
