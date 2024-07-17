@@ -5,7 +5,8 @@ import {  ApolloServer, gql } from "apollo-server-express";
  
 import { typeDefsArticle } from "./typeDefs/article.typeDefs"
 import { typeDefsCategory } from "./typeDefs/category.typeDefs"
-import { resolvers } from "./resolvers"
+import { resolversArticle } from "./resolvers/article.resolver"
+import { resolversCategory } from "./resolvers/category.resolver"
  
 const startSever = async () => {
   dotenv.config();
@@ -30,7 +31,7 @@ const startSever = async () => {
   // GraphQL
   const apolloServer = new ApolloServer({
     typeDefs:  [typeDefsArticle, typeDefsCategory],
-    resolvers,
+    resolvers: [resolversArticle, resolversCategory]
   });
 
   await apolloServer.start();
