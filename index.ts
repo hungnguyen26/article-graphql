@@ -2,7 +2,9 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import * as database from "./config/database";
 import {  ApolloServer, gql } from "apollo-server-express";
-import { typeDefs } from "./typeDefs"
+ 
+import { typeDefsArticle } from "./typeDefs/article.typeDefs"
+import { typeDefsCategory } from "./typeDefs/category.typeDefs"
 import { resolvers } from "./resolvers"
  
 const startSever = async () => {
@@ -26,9 +28,8 @@ const startSever = async () => {
 
   
   // GraphQL
-
   const apolloServer = new ApolloServer({
-    typeDefs,
+    typeDefs:  [typeDefsArticle, typeDefsCategory],
     resolvers,
   });
 
