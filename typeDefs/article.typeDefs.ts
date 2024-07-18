@@ -11,7 +11,7 @@ export const typeDefsArticle = gql`
 
     type Query {              
         hello: String,
-        getListArticle(sortKey: String, sortValue: String): [Article],
+        getListArticle(sortKey: String, sortValue: String, currentPage: Int = 1, limitItem:Int = 2): [Article],
         getAricle(id: ID): Article,
     }
     
@@ -19,7 +19,7 @@ export const typeDefsArticle = gql`
         title: String,
         avatar: String,
         description: String,
-        categoryId: String
+        categoryId: String  
     }
 
     type Mutation {             

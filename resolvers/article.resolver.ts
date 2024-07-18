@@ -7,7 +7,7 @@ export const resolversArticle = {
         return "xin chào";
       },
       getListArticle: async (_, args)=>{
-        const { sortKey , sortValue} = args;
+        const { sortKey , sortValue , currentPage , limitItem} = args;
 
         // sort
         const sort = {};
@@ -16,9 +16,14 @@ export const resolversArticle = {
         }
         // end sort
 
+        // phân trang 
+        const skip = (currentPage - 1) * limitItem;             // công thức bỏ qua bnhiu phần tử
+        // end phân trang 
+
+
         const articles = await Article.find({
             deleted: false,
-        }).sort(sort);
+        }).sort(sort).limit(limitItem).skip(skip);
 
         return articles;
       },
