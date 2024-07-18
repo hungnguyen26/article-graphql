@@ -7,7 +7,11 @@ export const resolversArticle = {
         return "xin chào";
       },
       getListArticle: async (_, args)=>{
-        const { sortKey , sortValue , currentPage , limitItem} = args;
+        const { sortKey , sortValue , currentPage , limitItem, filterKey, filterValue} = args;
+
+        const find = {
+            deleted: false,
+        }
 
         // sort
         const sort = {};
@@ -21,9 +25,13 @@ export const resolversArticle = {
         // end phân trang 
 
 
-        const articles = await Article.find({
-            deleted: false,
-        }).sort(sort).limit(limitItem).skip(skip);
+        // bộ lọc
+        if(filterKey && filterValue){
+            find[filterKey] = filterValue;
+        }
+        // end bộ lọc
+
+        const articles = await Article.find(find).sort(sort).limit(limitItem).skip(skip);
 
         return articles;
       },
