@@ -17,7 +17,8 @@ export const typeDefsArticle = gql`
             currentPage: Int = 1, 
             limitItem:Int = 2,
             filterKey: String,
-            filterValue: String
+            filterValue: String,
+            key: String
         ): [Article],
         getAricle(id: ID): Article,
     }

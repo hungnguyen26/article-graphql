@@ -7,7 +7,7 @@ export const resolversArticle = {
         return "xin chào";
       },
       getListArticle: async (_, args)=>{
-        const { sortKey , sortValue , currentPage , limitItem, filterKey, filterValue} = args;
+        const { sortKey , sortValue , currentPage , limitItem, filterKey, filterValue ,key} = args;
 
         const find = {
             deleted: false,
@@ -30,6 +30,14 @@ export const resolversArticle = {
             find[filterKey] = filterValue;
         }
         // end bộ lọc
+
+
+        // tìm kiếm
+        if(key){
+            const keyRegex = new RegExp(key,"i");
+            find["title"] = keyRegex;
+        }
+        // end tìm kiếm
 
         const articles = await Article.find(find).sort(sort).limit(limitItem).skip(skip);
 
